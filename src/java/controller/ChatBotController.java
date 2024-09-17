@@ -19,6 +19,8 @@ import org.json.JSONArray;
 
 public class ChatBotController extends HttpServlet {
 
+    private static final String TITLE_KEY = "title";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -62,7 +64,7 @@ public class ChatBotController extends HttpServlet {
                 for (Destination destination : destinations) {
                     names.put(destination.getName());
                 }
-                jsonResponse.put("title", Collections.singletonList("Please select a destination category"));
+                jsonResponse.put(TITLE_KEY, Collections.singletonList("Please select a destination category"));
                 jsonResponse.put("options", names);
                 break;
             case "packages":
@@ -72,7 +74,7 @@ public class ChatBotController extends HttpServlet {
                 for (Package p : packages) {
                     packageNames.put(p.getDescription());
                 }
-                jsonResponse.put("title", Collections.singletonList("Please choose a package"));
+                jsonResponse.put(TITLE_KEY, Collections.singletonList("Please choose a package"));
                 jsonResponse.put("options", packageNames);
                 break;
             case "contact":
@@ -86,7 +88,7 @@ public class ChatBotController extends HttpServlet {
                     admin.put("phone", us.getPhoneNumber());
                     admins.put(admin);
                 }
-                jsonResponse.put("title", Collections.singletonList("Contact Support Team"));
+                jsonResponse.put(TITLE_KEY, Collections.singletonList("Contact Support Team"));
                 jsonResponse.put("admins", admins);
                 break;
             default:
