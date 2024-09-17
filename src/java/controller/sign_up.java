@@ -26,6 +26,8 @@ import javax.mail.internet.*;
  */
 public class sign_up extends HttpServlet {
 
+    Properties properties = new Properties();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -97,8 +99,8 @@ public class sign_up extends HttpServlet {
         props.put("mail.smtp.auth", "true"); 
         props.put("mail.smtp.starttls.enable", "true"); 
 
-        String user = "giaptdhe186094@fpt.edu.vn";
-        String password = "voqfdcwtvasoucxx"; 
+        String user = properties.getProperty("email.user");
+        String password = properties.getProperty("email.password");
 
         Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
             @Override
